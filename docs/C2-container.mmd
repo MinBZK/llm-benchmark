@@ -1,0 +1,19 @@
+    C4Container
+    title Container diagram for LLM Benchmark System
+
+    Person(customer, Developer, "A developer wanting to test their LLM", $tags="v1.0")
+
+    Container_Boundary(c1, "LLM Benchmark") {
+        Container(web_app, "Web Application", "Python", "Delivers the static content of the already benchmarked models.")
+        ContainerDb(database, "Database", "SQL Database", "Stores LLM metadata")
+        ContainerDb(artifact_database, "Artifact Database", "MongoDB", "Stores LLM models & Benchmarks")
+        Container(runner, "Kubernetes", "OpenLLM", "Runs LLM models")
+    }
+
+    Rel(customer, web_app, "Uses", "HTTPS, SSH")
+    UpdateRelStyle(customer, web_app, $offsetY="-60")
+    BiRel(web_app, database, "Uses")
+    BiRel(web_app, artifact_database, "Uses")
+    BiRel(web_app, runner, "Uses")
+
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
