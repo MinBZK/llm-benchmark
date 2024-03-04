@@ -1,0 +1,26 @@
+ C4Context
+      title System Context diagram for LLM Benchmark System
+      Boundary(b0, "Dutch Government") {
+        Person(customerA, "Government Organisation", "A Dutch Government Organisation that has a LLM model.")
+        System(SystemLLMBenchmark, "LLM Benchmark", "Allows users to upload LLM models and test against dutch benchmarks.")
+
+        Boundary(b1, "LLM Infrastructure Provider") {
+          System_Ext(SystemE, "LLM Running System", "Runs the LLMs models against the benchmarks.")
+        }
+      }
+
+      Person(customerB, "Developer", "Developer that develops LLMs.")
+      Person(customerC, "Commerical Organisation", "Commercial organisation that wants to test their LLMs on bias and Dutch language.")
+
+      Rel(customerA, SystemLLMBenchmark, "Uploads LLM model")
+      Rel(customerB, SystemLLMBenchmark, "Uploads LLM model")
+      Rel(customerC, SystemLLMBenchmark, "Uploads LLM model")
+      Rel(SystemLLMBenchmark, SystemE, "Runs LLM models")
+      Rel(SystemE, SystemLLMBenchmark, "Returns LLM performance")
+
+      UpdateElementStyle(customerA, $bgColor="grey")
+      UpdateRelStyle(customerA, SystemLLMBenchmark, $textColor="blue", $lineColor="blue", $offsetY="20")
+      UpdateRelStyle(SystemLLMBenchmark, SystemE, $textColor="blue", $lineColor="blue", $offsetX="10")
+      UpdateRelStyle(SystemE, SystemLLMBenchmark, $offsetY="-10", $offsetX="-100")
+
+      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
