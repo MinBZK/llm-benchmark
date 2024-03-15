@@ -1,8 +1,9 @@
  C4Context
       title System Context diagram for LLM Benchmark System
       Boundary(b0, "Dutch Government") {
-        System(SystemLLMBenchmark, "LLM Benchmark System", "Allows users to upload LLM models, upload LLM Benchmarks, and test LLMs against Dutch LLM benchmarks.")
-        System(SystemAlgoReg, "Algorithm Register", "Registers the algorithms in use by the Dutch government")
+        System(SystemLLMBenchmark, "LLM Benchmark System", "Allows users to refer to LLM models, refer to LLM Benchmarks
+        , and test LLMs against LLM benchmarks relevant for The Netherlands")
+        System(SystemAlgoReg, "Algorithm Register", "Registry of algorithms in use by the Dutch government")
       }
 
       Person(dev0, "Local LLM Developer", "Developer that develops LLMs and tests locally")
@@ -10,14 +11,11 @@
       Person(dev1, "LLM Benchmark Developer", "Developer that develops LLM Benchmarks")
 
       Rel(dev0, SystemLLMBenchmark, "Uses the system locally")
-      Rel(dev, SystemLLMBenchmark, "Uploads LLM model")
-      Rel(dev1, SystemLLMBenchmark, "Uploads LLM Benchmarks")
+      Rel(dev, SystemLLMBenchmark, "Refers to available LLM model")
+      Rel(dev1, SystemLLMBenchmark, "Refers to LLM Benchmark")
 
       Rel(SystemLLMBenchmark, SystemAlgoReg, "Upload Benchmark results")
-      Rel(SystemAlgoReg, SystemLLMBenchmark, "Uploads specific LLM version")
-
-      Rel(SystemLLMBenchmark, SystemAlgoReg, "Upload Benchmark results")
-      Rel(SystemAlgoReg, SystemLLMBenchmark, "Uploads specific LLM version")
+      Rel(SystemAlgoReg, SystemLLMBenchmark, "Retrieves specific LLM version")
 
       UpdateRelStyle(SystemLLMBenchmark, SystemAlgoReg, $offsetY="-50", $offsetX="-70")
       UpdateRelStyle(SystemAlgoReg, SystemLLMBenchmark, $offsetY="50", $offsetX="-70")
