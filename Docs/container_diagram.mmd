@@ -1,0 +1,21 @@
+ C4Context
+      title Container diagram for LLM Benchmark System
+      Boundary(b0, "Dutch Government") {
+        System(web_api, "Web Application", "Frontend application for the users to interact with the system")
+        SystemDb(DB_LLM, "Database LLMs", "Stores all the LLMs")
+        System(fast_api, "Backend Application", "FastAPI")
+        SystemDb(DB_Benchmark, "Database Benchmarks", "Stores all the LLM Benchmarks")
+        System(model_runner, "Model runners", "Runs LangChain on Kubernetes")
+      }
+
+      Person(dev, "LLM Developer", "Developer that develops LLMs.")
+      Rel(dev, web_api, "Uploads LLM model")
+
+      Rel(web_api, fast_api, "Frontend making API calls")
+      Rel(fast_api, DB_LLM, "Reads and writes from")
+      Rel(fast_api, DB_Benchmark, "Reads and writes from")
+      Rel(fast_api, model_runner, "Schedules model run jobs on Kubenertes")
+
+      UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+      UpdateRelStyle(dev, web_api, $offsetY="-20")
+
