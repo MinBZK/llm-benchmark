@@ -1,12 +1,9 @@
  C4Context
       title Container diagram for LLM Benchmark System
+
       Boundary(b0, "Dutch Government") {
         System(web_api, "Web Application", "Frontend application for the users to interact with the system")
-        %% under discussion whether we need dedicated storage for this
-        SystemDb(DB_LLM, "Database LLMs", "Stores all the LLMs")
         System(fast_api, "Backend Application", "FastAPI")
-        %% under discussion whether we need dedicated storage for this
-        SystemDb(DB_Benchmark, "Database Benchmarks", "Stores all the LLM Benchmarks")
         System(model_runner, "Model runners", "Runs LangChain on Kubernetes")
       }
 
@@ -14,12 +11,15 @@
       Rel(dev, web_api, "Uploads LLM model")
 
       Rel(web_api, fast_api, "Frontend making API calls")
-      Rel(fast_api, DB_LLM, "Reads and writes from")
-      Rel(fast_api, DB_Benchmark, "Reads and writes from")
       Rel(fast_api, model_runner, "Schedules model run jobs on kubernetes")
-      Rel(model_runner, DB_Benchmark, "Retrieves LLM Benchmark")
-      Rel(model_runner, DB_LLM, "Retrieves LLM model")
 
-      UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
+      Rel(model_storage, model_runner, "Retrieves and stores LLMs in ephemeral/LRU Cache")
+      Rel(benchmark_storage, model_runner, "Retrieves and stores benchmarks in ephemeral/LRU Cache")
+
+      System(model_storage, "Model Git", "Versioning and storage of LLMs")
+      System(benchmark_storage, "Benchmark Git", "Versioning and storage of Benchmarks")
+
+      UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
       UpdateRelStyle(dev, web_api, $offsetY="-20")
-
+      UpdateRelStyle(benchmark_storage, model_runner, $offsetY="-20", $offsetX="-150")
+      UpdateRelStyle(model_storage, model_runner, $offsetX="-150")

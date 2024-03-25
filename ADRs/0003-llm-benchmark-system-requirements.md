@@ -22,6 +22,7 @@ The requirements of the solution are:
 the [Dutch Algorithm Register](https://algoritmes.overheid.nl/nl)
     - In this way people would only need to provide the link to the model on the register and our solution would do the
     rest, the results of the benchmarks would also be posted on the Algorithm Register
+- THe preferable entrance for benchmark datasets would also be versioned and published at a trusted and open third party
 - There should be an online version hosted by the ai-validation team for easy access and to promote transparency
     - This should be scalable as downloading models and verifying them could take a long time especially when supplying
     many people
