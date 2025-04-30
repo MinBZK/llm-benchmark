@@ -49,5 +49,5 @@ Deze map bevat:
 Als je deze benchmark gebruikt, verwijs dan naar de thesis:
 
 ```text
-Burema, R. (2025). Measuring Social Bias in Large Language Models Within a Dutch Professional Context.
+Burema, R. (2025). Evaluating Dutch Social Bias in Large Language Models.
 ```
