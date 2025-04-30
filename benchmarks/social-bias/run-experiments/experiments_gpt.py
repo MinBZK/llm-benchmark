@@ -4,9 +4,10 @@ import os
 from openai import OpenAI
 import time
 
+script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def run_experiment(start_range, end_range, model, prompt_csv):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
     start_time = time.time()
 
     # call the client
@@ -25,7 +26,7 @@ def run_experiment(start_range, end_range, model, prompt_csv):
     subset_index_res['reactie'] = None
 
     for i in range(len(subset_index_res)):
-        prompt = subset_index_res.loc[i,'prompt']
+        prompt = subset_index_res.loc[i, 'prompt']
         # make a message
         message = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -38,14 +39,18 @@ def run_experiment(start_range, end_range, model, prompt_csv):
             ]
         )
         response_llm = message.choices[0].message.content
-        #save response in dataframe
-        subset_index_res.loc[i,'reactie'] = response_llm
+        # save response in dataframe
+        subset_index_res.loc[i, 'reactie'] = response_llm
 
-        #save dataframe every 5 responses
+        # save dataframe every 5 responses
         if i % 150 == 0:
-            subset_index_res.to_csv('{}/reactions/{}_{}_{}_{}_during.csv'.format(script_dir, model_save, prompts_save, start_range, end_range), sep='\t', index=False)
+            subset_index_res.to_csv(
+                '{}/reactions/{}_{}_{}_{}_during.csv'.format(script_dir, model_save, prompts_save, start_range,
+                                                             end_range), sep='\t', index=False)
 
-    subset_index_res.to_csv('{}/reactions/{}_{}_{}_{}.csv'.format(script_dir, model_save, prompts_save, start_range, end_range), sep ='\t', index=False)
+    subset_index_res.to_csv(
+        '{}/reactions/{}_{}_{}_{}.csv'.format(script_dir, model_save, prompts_save, start_range, end_range), sep='\t',
+        index=False)
     print('Time needed is {}'.format(time.time() - start_time))
 
 
