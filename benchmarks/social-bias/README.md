@@ -73,6 +73,7 @@ Deze map bevat:
    Voor OpenAI modellen:
 
    ```bash
+   export OPENAI_API_KEY="YOUR_KEY"
    uv run run-experiments/experiments_gpt.py 0 100 gpt-4o-mini yes_no_gender.csv
    ```
 
