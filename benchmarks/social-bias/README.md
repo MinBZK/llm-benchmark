@@ -40,9 +40,57 @@ Deze map bevat:
 
 ## 🚀 Gebruik
 
-1. Genereer prompts met de scripts in `generate-prompts` of gebruik de bestaande prompts in `prompts`
-2. Voer de experimenten uit met de scripts in `run-experiments`
-3. Analyseer de resultaten om bias in verschillende LLM implementaties te vergelijken
+1. Installeer `uv`, een snelle Python package installer:
+
+   ```bash
+   # Volg de instructies op https://docs.astral.sh/uv/getting-started/installation/
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. Run vanuit de `social-bias` folder:
+
+   ```bash
+   cd llm-benchmark/benchmarks/social-bias
+   ```
+
+3. Genereer prompts:
+
+   ```bash
+   uv run generate-prompts/prompts.py
+   ```
+
+   Of gebruik de bestaande prompts in de `prompts` map.
+
+4. Voer de experimenten uit met de scripts in `run-experiments`:
+
+   Voor Claude modellen:
+
+   ```bash
+   export ANTHROPIC_API_KEY="YOUR_KEY"
+   uv run run-experiments/experiments_claude.py 0 100 claude-3-5-haiku yes_no_gender.csv
+   ```
+
+   Voor OpenAI modellen:
+
+   ```bash
+   uv run run-experiments/experiments_gpt.py 0 100 gpt-4o-mini yes_no_gender.csv
+   ```
+
+   Voor Hugging Face modellen:
+
+   ```bash
+   uv run run-experiments/experiments_huggingface.py 0 100 mistralai/Mistral-7B-v0.1 yes_no_gender.csv
+   ```
+
+   Alle commando's accepteren de volgende parameters in deze volgorde:
+   - `start_range`: startpunt in de prompt dataset (integer)
+   - `end_range`: eindpunt in de prompt dataset (integer)
+   - `model`: naam van het model
+   - `prompt_csv`: CSV bestand met prompts (moet in de prompts map staan)
+
+   De resultaten worden opgeslagen in een `reactions` directory binnen de `run-experiments` map.
+
+5. Analyseer de resultaten om bias in verschillende LLM implementaties te vergelijken
 
 ## 📚 Bronvermelding
 
