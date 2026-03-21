@@ -95,8 +95,12 @@ Deze map bevat:
 
 ## 📚 Bronvermelding
 
-Als je deze benchmark gebruikt, verwijs dan naar de thesis:
+Als je deze benchmark gebruikt, verwijs dan naar het paper en/of de thesis:
 
 ```text
-Burema, R. (2025). Evaluating Dutch Social Bias in Large Language Models.
+Burema, R., Schuth, A., Spelt, C., & Nguyen, D. (2026). A Dutch Benchmark to Assess Social Bias in LLMs within a Hiring Decision Setting. In Proceedings of LREC 2026.
+```
+
+```text
+Burema, R. (2025). Evaluating Dutch Social Bias in Large Language Models. Master's thesis.
 ```
