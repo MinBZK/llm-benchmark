@@ -4,6 +4,8 @@ Deze Social Bias benchmark is het resultaat van de masterthesis van Renate Burem
 het [AI Validation Team](https://minbzk.github.io/ai-validation/). De volledige thesis
 is [hier](master_thesis_burema.pdf) te vinden. 📝
 
+Deze benchmark wordt onder andere gebruikt als bias-metric in [Grip on LLMs](https://amsterdam.github.io/grip-on-llms/nl/).
+
 ## 🎯 Doel
 
 Deze benchmark meet sociale bias in Large Language Models (LLMs) binnen een Nederlandse beroepscontext. Het onderzoekt
